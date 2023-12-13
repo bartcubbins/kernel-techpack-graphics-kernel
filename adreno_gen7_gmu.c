@@ -914,6 +914,8 @@ void gen7_gmu_register_config(struct adreno_device *adreno_dev)
 
 	/* Pass chipid to GMU FW, must happen before starting GMU */
 	gmu_core_regwrite(device, GEN7_GMU_GENERAL_10,
+			adreno_is_gen7_0_x_family(adreno_dev) ?
+			ADRENO_GMU_CHIPID(adreno_dev->chipid) :
 			ADRENO_GMU_REV(ADRENO_GPUREV(adreno_dev)));
 
 	/* Log size is encoded in (number of 4K units - 1) */
